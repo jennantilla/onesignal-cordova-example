@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, please refer to the docs:
+            https://cordova.apache.org/docs/en/latest/
+        Some notes:
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="css/index.css">
+        <title>OneSignal</title>
+    </head>
+    <body>
+        <div class="app">
+            <h1>Cordova User Model</h1>
+            <div id="deviceready" class="blink">
+                <p class="event listening">Connecting to Device</p>
+                <p class="event received">Device is Ready</p>
+            </div>
+            <br>
+            <div>
+                <div>
+                    <h3>User</h3>
+                    <h5>Privacy</h5>
+                    <div>
+                        <button class="method-btn" id="getRequiresPrivacyConsent">Get Requires Privacy Consent</button>
+                        <button class="method-btn" id="getPrivacyConsent">Get Privacy Consent</button>
+                    </div>
+                    <h5>Aliases & Channels</h5>
+                    <div>
+                        <button class="method-btn" id="login">Log In</button>
+                        <button class="method-btn" id="logout">Log Out</button>
+                    </div>
+                    <br>
+                    <div>
+                        <input type="text" placeholder="Alias Label" name="addAliasLabel" id="addAliasLabel"/>
+                        <input type="text" placeholder="Alias ID" name="addAliasId" id="addAliasId"/>
+                        <button class="method-btn" id="addAlias">Add Alias</button>
+                    </div>
+                    <br>
+                    <div>
+                        <input type="text" placeholder="Alias Label" name="removeAliasLabel" id="removeAliasLabel"/>
+                        <button class="method-btn" id="removeAlias">Remove Alias</button>
+                    </div>
+                    <br>
+                    <div>
+                        <input type="text" placeholder="Add Email Address" name="addEmailAddress" id="addEmailAddress"/>
+                        <button class="method-btn" id="addEmail">Add Email</button>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Remove Email Address" name="removeEmailAddress" id="removeEmailAddress"/>
+                        <button class="method-btn" id="removeEmail">Remove Email</button>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="+15555555555" name="sms" id="sms"/>
+                        <button class="method-btn" id="addSMS">Add SMS</button>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="+15555555555" name="removeSms" id="removeSms"/>
+                        <button class="method-btn" id="removeSMS">Remove SMS</button>
+                    </div>
+                    <div>
+                        <h5>Language</h5>
+                        <button class="method-btn" id="setLanguage">Set Language</button>
+                    </div>
+                    <div>
+                        <h5>Tags</h5>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="key" name="addTagKey" id="addTagKey"/>
+                        <input type="text" placeholder="value" name="addTagValue" id="addTagValue"/>
+                        <br>
+                    <button class="method-btn" id="addTag">Add Tag</button>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="key" name="removeTagKey" id="removeTagKey"/>
+                        <br>
+                        <button class="method-btn" id="removeTag">Remove Tag</button>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <h3>Push Subscription</h3>
+                    <button class="method-btn" id="optIn">Opt In</button>
+                    <button class="method-btn" id="optOut">Opt Out</button>
+                    <button class="method-btn" id="addObserver">Add Observer</button>
+                    <button class="method-btn" id="removeObserver">Remove Observer</button>
+                </div>
+                <br>
+                <div>
+                    <h4>Push Subscriptrion Properties</h4>
+                    <button class="method-btn" id="getPushId">Get Push ID</button>
+                    <button class="method-btn" id="getPushToken">Get Push Token</button>
+                    <button class="method-btn" id="getOptIn">Get Opted-In</button>
+                </div>
+                <br>
+                <div>
+                    <h3>Notifications</h3>
+                    <button class="method-btn" id="requestPermission">Request Permission</button>
+                    <button class="method-btn" id="getPermission">Get Permission</button>
+                    <button class="method-btn" id="canRequestPermission">Can Request Permission</button>
+                    <br>
+                    <br>
+                    <button id="addPermissionObserver1">Add Observer 1</button>
+                    <br>
+                    <button id="removePermissionObserver1">Remove Observer 1</button>
+                    <br>
+                </div>
+                <div>
+                    <button class="method-btn" id="registerForProvisionalAuthorization">Register for Provisional Auth</button>
+                    <br>
+                    <button class="method-btn" id="clearAllNotifications">Clear All Notifications</button>
+                    <button class="method-btn" id="removeNotification">Remove Notification</button>
+                    <button class="method-btn" id="removeGroupedNotifications">Remove Grouped</button>
+                </div>
+                <br>
+                <div>
+                    <h3>Session</h3>
+                    <input type="text" placeholder="Outcome Name" name="outcome" id="addOutcomeInput"/>
+                    <button class="method-btn" id="addOutcome">Add Outcome</button>
+                    <br>
+                    <input type="text" placeholder="Outcome Name" name="uniqueOutcome" id="addUniqueOutcomeInput"/>
+                    <button class="method-btn" id="addUniqueOutcome">Add Unique Outcome</button>
+                    <br>
+                    <input type="text" placeholder="Outcome Name" name="OutcomeName" id="valueOutcomeName"/>
+                    <input type="text" placeholder="Outcome Value" name="OutcomeValue" id="valueOutcomeValue"/>
+                    <button class="method-btn" id="addOutcomeWithValue">Add Outcome with Value</button>
+                </div>
+                <br>
+                <div>
+                    <h3>In-App Messages</h3>
+                    <button class="method-btn" id="setLifecycleHandler">Set Lifecycle Handler</button>
+                    <button class="method-btn" id="setClickHandler">Set Click Handler</button>
+                    <br>
+                    <br>
+                    <button class="method-btn" id="addTrigger">Add Trigger</button>
+                    <button class="method-btn" id="removeTrigger">Remove Trigger</button>
+                    <button class="method-btn" id="clearTriggers">Clear All Triggers</button>
+                    <br>
+                    <br>
+                    <button class="method-btn" id="pauseInAppMessages">Pause In-App Messages</button>
+                    <button class="method-btn" id="resumeInAppMessages">Resume In-App Messages</button>
+                </div>
+                <br>
+                <div>
+                    <h3>Location</h3>
+                    <button class="method-btn" id="requestLocationPermission">Grant Location Permission</button>
+                    <button class="method-btn" id="isLocationShared">Location Sharing Status</button>
+                    <button class="method-btn" id="setLocationShared">Set Location Shared</button>
+                </div>
+                <br>
+                <h3>Live Activities</h3>
+                <button class="method-btn" id="enterLiveActivity">Enter Live Activity</button>
+                <button class="method-btn" id="exitLiveActivity">Exit Live Activity</button>
+                </div>
+            </div>
+        </div>
+        <script src="cordova.js"></script>
+        <script src="js/index.js"></script>
+    </body>
+</html>
