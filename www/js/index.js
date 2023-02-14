@@ -253,13 +253,30 @@ function addOutcomeWithValue() {
 document.getElementById("setClickHandler").addEventListener("click", setClickHandler);
 function setClickHandler() {
     window.plugins.OneSignal.InAppMessages.setClickHandler(function(result){
-        console.log("Click Handler Callback received: ");
         let firstClick = result.isFirstClick;
         let closesMessage = result.closesMessage;
         let clickUrl = result.clickUrl;
         let clickName = result.clickName;
         console.log("Click handler results: {First Click: ", firstClick, " closesMessage: ", closesMessage, " clickUrl: ", clickUrl, " clickName: ", clickName);
         });
+}
+
+document.getElementById("setLifecycleHandler").addEventListener("click", setLifecycleHandler);
+function setLifecycleHandler() {
+    window.plugins.OneSignal.InAppMessages.setLifecycleHandler({
+        onWillDisplayInAppMessage: message => {
+            console.log("OneSignal: will display IAM: ", message.messageId)
+        },
+        onDidDisplayInAppMessage: message => {
+            console.log("OneSignal: did display IAM: ", message.messageId)
+        },
+        onWillDismissInAppMessage: message => {
+            console.log("OneSignal: will dismiss IAM: ", message.messageId)
+        },
+        onDidDismissInAppMessage: message => {
+            console.log("OneSignal: did dismiss IAM: ", message.messageId)
+        }
+    });
 }
 
 document.getElementById("addTrigger").addEventListener("click", addTrigger);
